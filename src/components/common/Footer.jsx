@@ -1,10 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LogoMark } from './LogoMark';
 import { BRAND } from '../../utils/constants';
 import { Phone, Mail, MapPin, Clock, ShieldCheck, Heart } from 'lucide-react';
+import { scrollToSection } from './ScrollManager';
 
 export function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/';
+
+  const handleNavClick = (e, path, sectionId) => {
+    e.preventDefault();
+    if (isHomePage) {
+      if (!sectionId || sectionId === 'top') {
+        scrollToSection('top');
+      } else {
+        scrollToSection(sectionId);
+      }
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
     <footer
       style={{
@@ -53,27 +71,57 @@ export function Footer() {
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <li>
-                <Link to="/" style={{ color: 'var(--gold-100)', fontSize: '0.875rem' }}>
+                <a
+                  href="/"
+                  onClick={(e) => handleNavClick(e, '/', 'top')}
+                  style={{ color: 'var(--gold-100)', fontSize: '0.875rem', textDecoration: 'none', cursor: 'pointer' }}
+                >
                   › Home Page
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/register" style={{ color: 'var(--gold-100)', fontSize: '0.875rem' }}>
+                <Link to="/register" style={{ color: 'var(--gold-100)', fontSize: '0.875rem', textDecoration: 'none' }}>
                   › Register Matrimonial Profile
                 </Link>
               </li>
               <li>
-                <Link to="/#services" style={{ color: 'var(--gold-100)', fontSize: '0.875rem' }}>
+                <a
+                  href="/#services"
+                  onClick={(e) => handleNavClick(e, '/#services', 'services')}
+                  style={{ color: 'var(--gold-100)', fontSize: '0.875rem', textDecoration: 'none', cursor: 'pointer' }}
+                >
                   › Matrimonial Services
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/#about" style={{ color: 'var(--gold-100)', fontSize: '0.875rem' }}>
+                <a
+                  href="/#about"
+                  onClick={(e) => handleNavClick(e, '/#about', 'about')}
+                  style={{ color: 'var(--gold-100)', fontSize: '0.875rem', textDecoration: 'none', cursor: 'pointer' }}
+                >
                   › About Our Service Center
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/admin/login" style={{ color: 'var(--gold-300)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem', opacity: 0.85 }}>
+                <a
+                  href="/#stories"
+                  onClick={(e) => handleNavClick(e, '/#stories', 'stories')}
+                  style={{ color: 'var(--gold-100)', fontSize: '0.875rem', textDecoration: 'none', cursor: 'pointer' }}
+                >
+                  › Happy Couples & Stories
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#contact"
+                  onClick={(e) => handleNavClick(e, '/#contact', 'contact')}
+                  style={{ color: 'var(--gold-100)', fontSize: '0.875rem', textDecoration: 'none', cursor: 'pointer' }}
+                >
+                  › Contact & Location
+                </a>
+              </li>
+              <li style={{ marginTop: '0.25rem' }}>
+                <Link to="/admin/login" style={{ color: 'var(--gold-300)', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem', opacity: 0.85, textDecoration: 'none' }}>
                   <ShieldCheck size={13} /> Admin Portal Login
                 </Link>
               </li>

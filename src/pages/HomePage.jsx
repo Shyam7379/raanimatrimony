@@ -118,6 +118,7 @@ export function HomePage() {
             HERO SECTION
             ========================================================================= */}
         <section
+          id="hero"
           style={{
             position: 'relative',
             backgroundColor: 'var(--paper)',
@@ -487,7 +488,7 @@ export function HomePage() {
         {/* =========================================================================
             HAPPY COUPLES & SUCCESS STORIES SECTION
             ========================================================================= */}
-        <section style={{ padding: '4.5rem 1.25rem', backgroundColor: 'var(--ivory)' }}>
+        <section id="stories" style={{ padding: '4.5rem 1.25rem', backgroundColor: 'var(--ivory)' }}>
           <div className="container">
             <SectionHeader
               title="Happy Couples & Success Stories"
@@ -547,7 +548,7 @@ export function HomePage() {
         {/* =========================================================================
             FAQS SECTION
             ========================================================================= */}
-        <section style={{ padding: '4.5rem 1.25rem', backgroundColor: 'var(--cream)', borderTop: '1px solid var(--border)' }}>
+        <section id="faqs" style={{ padding: '4.5rem 1.25rem', backgroundColor: 'var(--cream)', borderTop: '1px solid var(--border)' }}>
           <div className="container-narrow">
             <SectionHeader
               title="Frequently Asked Questions (FAQs)"

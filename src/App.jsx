@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
+import { ScrollManager } from './components/common/ScrollManager';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -16,6 +17,7 @@ export function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <ScrollManager />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
